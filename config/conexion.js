@@ -16,5 +16,6 @@ conexion.connect((err)=>{
     console.log("DB connect")
   }
 });
+setInterval(function () { conexion.query('SELECT 1'); }, process.env.PORT || 3000); 
 
 module.exports=conexion;

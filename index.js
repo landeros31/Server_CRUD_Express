@@ -2,6 +2,7 @@ require('./config/conexion')
 
 const express =require('express');
 const port =(process.env.port || 3000);
+const path = require('path'); 
 
 //express
 const app= express();
@@ -11,9 +12,11 @@ app.use(express.json())
 
 //config
 app.set('port',port)
+app.use( express.static('public')) 
 
 //rutas
 app.use('/api', require('./rutas'))
+app.get( '*', (req, res) => { res.sendFile( path.resolve(__dirname, 'public/index.html')) });
 
 /////iniciar express
 app.listen(app.get('port'),(error)=>{
